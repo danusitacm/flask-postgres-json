@@ -1,8 +1,9 @@
 from app.extensions import db 
 import json
+
 class Alumno(db.Model):
     __tablename__='alumno'
-    id_usuario = db.Column(db.Integer, primary_key=True)
+    usuario_pk = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String())
     email = db.Column(db.String())
     telefono = db.Column(db.String())
@@ -19,11 +20,14 @@ class Alumno(db.Model):
         self.puntaje_alumno = puntaje_alumno
         
     def to_json (self):
-        return json.dumps(dict(id_usuario=self.id_usuario,
-                               nombre=self.nombre,
-                               email=self.email,
-                               telefono=self.telefono,
-                               genero=self.genero,
-                               alumno_pk=self.alumno_pk,
-                               puntaje_alumno=self.puntaje_alumno))
+        return { 'usuario_pk' : self.usuario_pk,
+                'nombre' : self.nombre,
+                'email' : self.email,
+                'telefono' : self.telefono,
+                'genero' : self.genero,
+                'alumno_pk' : self.alumno_pk,
+               'puntaje_alumno': self.puntaje_alumno }
+    
+    def __repr__(self):
+        return '<usuario_pk {}>'.format(self.usuario_pk)
     
