@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 from app.alumno import alumno
-from app.extensions import db
+from app.extensions import db,migrate
 def create_app():
     # create and configure the app
     app = Flask(__name__)
@@ -16,6 +16,7 @@ def create_app():
     
     
     db.init_app(app)
+    migrate.init_app(app, db)
     app.register_blueprint(alumno, url_prefix='/alumnos')
     
     #app.cli.add_command(create_tables)
