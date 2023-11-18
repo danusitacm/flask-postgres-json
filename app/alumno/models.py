@@ -10,12 +10,12 @@ class Alumno(db.Model):
     alumno_pk=db.Column(db.Integer())
     puntaje_alumno=db.Column(db.Float())
     
-    def __init__(self,nombre,email,telefono,genero,alumno_pk,puntaje_alumno) -> None:
+
+    def __init__(self,nombre,email,telefono,genero,puntaje_alumno) -> None:
         self.nombre = nombre
         self.email = email
         self.telefono = telefono
         self.genero = genero
-        self.alumno_pk =alumno_pk
         self.puntaje_alumno = puntaje_alumno
         
     def to_json (self):
