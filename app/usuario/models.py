@@ -10,8 +10,8 @@ class Usuario(db.Model):
     genero = db.Column(db.String(255))
     
     # Relaciones
-    alumno = db.relationship('Alumno',uselist=False, backref="usuarios1")
-    Tutor = db.relationship('Tutor',uselist=False, backref="usuarios2")
+    alumno = db.relationship('Alumno', back_populates='usuario', uselist=False)
+    tutores = db.relationship('Tutor', back_populates='usuario',uselist=False)
 
     def __init__(self,nombre,email,telefono,genero) -> None:
         self.nombre = nombre

@@ -7,7 +7,7 @@ class Tutor(db.Model):
     usuario_pk=db.Column(db.Integer, db.ForeignKey('usuario.usuario_pk'),nullable=False)
     
     # Relaciones 
-    usuario = db.relationship('Usuario', backref="tutores")
+    usuario = db.relationship('Usuario', back_populates='tutores', uselist=False)
     
     
     def __init__(self,puntaje_tutor,usuario_pk) -> None:
