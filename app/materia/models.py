@@ -4,7 +4,7 @@ class Materia(db.Model):
     __tablename__='materia'
     materia_pk=db.Column(db.Integer(), primary_key=True)
     nombre=db.Column(db.String(255))
-    codigo=db.Column(db.Integer())
+    codigo=db.Column(db.String(255))
     
     def __init__(self,nombre,codigo) -> None:
         self.nombre = nombre
