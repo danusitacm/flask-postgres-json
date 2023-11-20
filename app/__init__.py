@@ -2,7 +2,8 @@ import os
 
 from flask import Flask
 from app.alumno import alumno
-from app.extensions import db,migrate
+from app.usuario import usuario
+from app.extensions import db,migrate,ma
 def create_app():
     # create and configure the app
     app = Flask(__name__)
@@ -17,7 +18,11 @@ def create_app():
     
     db.init_app(app)
     migrate.init_app(app, db)
-    app.register_blueprint(alumno, url_prefix='/alumnos')
+    ma.init_app(app)
+    
+    app.register_blueprint(usuario)
+    app.register_blueprint(alumno)
+    
     
     #app.cli.add_command(create_tables)
     

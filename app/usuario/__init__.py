@@ -1,7 +1,5 @@
 from flask import Blueprint
 
-usuario = Blueprint('usuario', __name__)
+usuario = Blueprint('usuario',__name__,url_prefix='/usuarios')
 
-@usuario.route("/")
-def api_home():
-    return "<h1>usuarios Home</h1>"
+from . import routes
