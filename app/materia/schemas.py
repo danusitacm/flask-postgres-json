@@ -12,8 +12,8 @@ class MateriaSchema(ma.SQLAlchemySchema):
     materia_pk = fields.Integer()
     #para validar tengo que haces esto
     # nombre = fields.String(required=True, validate=validate.Length(min=1, max=255),error=" el error")
-    nombre =fields.Float(required=True)
-    codigo = fields.Integer(required=True)
+    nombre =fields.String(required=True)
+    codigo = fields.String(required=True)
 
 materia_schema = MateriaSchema ()
 materias_schema  = MateriaSchema(many=True)
