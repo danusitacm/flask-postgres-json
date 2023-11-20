@@ -1,5 +1,5 @@
 from app.extensions import db 
-import json
+
 
 class Usuario(db.Model):
     __tablename__='usuario'
@@ -8,6 +8,10 @@ class Usuario(db.Model):
     email = db.Column(db.String(255))
     telefono = db.Column(db.String(255))
     genero = db.Column(db.String(255))
+    
+    # Relaciones
+    alumno = db.relationship('Alumno',uselist=False, backref="usuarios1")
+    Tutor = db.relationship('Tutor',uselist=False, backref="usuarios2")
 
     def __init__(self,nombre,email,telefono,genero) -> None:
         self.nombre = nombre
