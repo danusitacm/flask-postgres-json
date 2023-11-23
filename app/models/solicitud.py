@@ -6,8 +6,8 @@ class Solicitud(db.Model):
     solicitud_pk = db.Column(db.Integer, primary_key=True)
     fecha_solicitud = db.Column(db.Date)
     estado_solicitud = db.Column(db.String(255))
-    materia_pk = db.Column(db.Integerdb.ForeignKey('materia_pk'),nullable=False)
-    alumno_pk = db.Column(db.Integer,db.ForeignKey('alumno_pk'),nullable=False)
+    materia_pk = db.Column(db.Integer,db.ForeignKey('materia.materia_pk'),nullable=False)
+    alumno_pk = db.Column(db.Integer,db.ForeignKey('alumno.alumno_pk'),nullable=False)
     
     # Relaciones
     alumno = db.relationship('Alumno', back_populates='solicitud')

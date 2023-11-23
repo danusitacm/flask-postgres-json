@@ -19,7 +19,7 @@ class SolicitudSchema(ma.SQLAlchemySchema):
     fecha_solicitud =fields.Date(required=True)
     estado_solicitud = fields.String(required=True)
     materia_pk = fields.Integer(required=True)
-    alumno_pk = fields.Integers(required=True)
+    alumno_pk = fields.Integer(required=True)
 
 solicitud_schema = SolicitudSchema ()
 solicitudes_schema  = SolicitudSchema(many=True)
