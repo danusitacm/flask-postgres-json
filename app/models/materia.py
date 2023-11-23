@@ -6,6 +6,9 @@ class Materia(db.Model):
     nombre=db.Column(db.String(255))
     codigo=db.Column(db.String(255))
     
+    #Relaciones
+    solcitud = db.relationship('Solicitud', back_populates='materia')
+    
     def __init__(self,nombre,codigo) -> None:
         self.nombre = nombre
         self.codigo =codigo
