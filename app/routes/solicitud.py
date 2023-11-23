@@ -59,7 +59,7 @@ def actualizar_solicitud(id):
                                         estado_solicitud,
                                         materia_pk,
                                         alumno_pk)
-            db.commit()
+            db.session.commit()
             return solicitud_schema.dump(solicitud_actualizada), 200
         except ValidationError as err:
             return err.messages,400

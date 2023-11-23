@@ -54,7 +54,7 @@ def actualizar_usuario(id):
             usuario.telefono=request.json['telefono']
             usuario.genero=request.json['genero']
             db.session.commit()
-            return usuario_schema.dump(request.json), 200
+            return usuario_schema.dump(usuario), 200
         except ValidationError as err:
             return err.messages,400
        

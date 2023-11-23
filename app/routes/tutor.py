@@ -49,8 +49,9 @@ def actualizar_tutor(id):
             tutor_schema.load(request.json)
             puntaje_tutor = request.json['puntaje_tutor']
             usuario_pk = request.json['usuario_pk']
-            nuevo_tutor = Tutor(puntaje_tutor,usuario_pk)
-            return tutor_schema.dump(request.json), 200
+            tutor_actualizado = Tutor(puntaje_tutor,usuario_pk)
+            db.session.commit()
+            return tutor_schema.dump(tutor_actualizado), 200
         except ValidationError as err:
             return err.messages,400
        
