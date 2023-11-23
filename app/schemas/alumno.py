@@ -1,19 +1,19 @@
-from .models import Tutor
+from app.models.alumno import Alumno
 from app.extensions import ma
 from marshmallow import fields,validate
 
-class TutorSchema(ma.SQLAlchemySchema):
+class AlumnoSchema(ma.SQLAlchemySchema):
     class Meta:
-        model = Tutor
+        model = Alumno
         load_instance = True
-        fields = ("tutor_pk", "puntaje_tutor", "usuario_pk")
+        fields = ("alumno_pk", "puntaje_alumno", "usuario_pk")
         ordered=True
         
-    tutor_pk = fields.Integer()
+    alumno_pk = fields.Integer()
     #para validar tengo que haces esto
     # nombre = fields.String(required=True, validate=validate.Length(min=1, max=255),error=" el error")
-    puntaje_tutor =fields.Float(required=True)
+    puntaje_alumno =fields.Float(required=True)
     usuario_pk = fields.Integer(required=True)
 
-tutor_schema = TutorSchema ()
-tutors_schema  = TutorSchema(many=True)
+alumno_schema = AlumnoSchema ()
+alumnos_schema  = AlumnoSchema(many=True)

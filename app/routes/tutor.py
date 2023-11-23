@@ -1,23 +1,25 @@
 from flask import request, jsonify
-from app.tutor import tutor
-from app.tutor.models import Tutor
+from app.models.tutor import Tutor
 from app.extensions import db
-from .schemas import tutor_schema, tutors_schema
+from app.schemas.tutor import tutor_schema, tutors_schema
 from marshmallow  import ValidationError
+from flask import Blueprint
 
-@tutor.route('/',methods=['GET'])
+tutor_bp = Blueprint('tutor', __name__,url_prefix="/tutores")
+
+@tutor_bp.route('/',methods=['GET'])
 def obtener_tutors():
     if request.method == 'GET':
         tutor = Tutor.query.all()
         return tutors_schema.dump(tutor)
     
-@tutor.route('/<int:id>',methods=['GET'])
+@tutor_bp.route('/<int:id>',methods=['GET'])
 def obtener_tutor_id(id):
     if request.method == 'GET':
         tutor = Tutor.query.get(id)
         return tutor_schema.dump(tutor)
 
-@tutor.route('/',methods= ['POST'])
+@tutor_bp.route('/',methods= ['POST'])
 def agregar_tutor():
     if request.method == 'POST':
         try:
@@ -39,7 +41,7 @@ def agregar_tutor():
             
         
     
-@tutor.route('/<int:id>',methods=['PUT'])
+@tutor_bp.route('/<int:id>',methods=['PUT'])
 def actualizar_tutor(id):
     if request.method == 'PUT':
         try:

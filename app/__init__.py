@@ -1,10 +1,11 @@
 import os
 
 from flask import Flask
-from app.alumno import alumno
-from app.usuario import usuario
-from app.tutor import tutor
-from app.materia import materia
+
+from app.routes.usuario import usuario_bp
+from app.routes.tutor import tutor_bp
+from app.routes.materia import materia_bp
+from app.routes.alumno import alumno_bp
 from app.extensions import db,migrate,ma
 def create_app():
     # create and configure the app
@@ -22,10 +23,10 @@ def create_app():
     migrate.init_app(app, db)
     ma.init_app(app)
     
-    app.register_blueprint(usuario)
-    app.register_blueprint(alumno)
-    app.register_blueprint(tutor)
-    app.register_blueprint(materia)
+    app.register_blueprint(usuario_bp)
+    app.register_blueprint(alumno_bp)
+    app.register_blueprint(tutor_bp)
+    app.register_blueprint(materia_bp)
     
     #app.cli.add_command(create_tables)
     

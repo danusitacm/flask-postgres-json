@@ -1,23 +1,25 @@
 from flask import request, jsonify
-from app.materia import materia
-from app.materia.models import Materia
+from app.models.materia import Materia
 from app.extensions import db
-from .schemas import materia_schema, materias_schema
+from app.schemas.materia import materia_schema, materias_schema
 from marshmallow  import ValidationError
+from flask import Blueprint
 
-@materia.route('/',methods=['GET'])
+materia_bp = Blueprint('materia', __name__,url_prefix="/materias")
+
+@materia_bp.route('/',methods=['GET'])
 def obtener_materias():
     if request.method == 'GET':
         materia = Materia.query.all()
         return materias_schema.dump(materia)
     
-@materia.route('/<int:id>',methods=['GET'])
+@materia_bp.route('/<int:id>',methods=['GET'])
 def obtener_materia_id(id):
     if request.method == 'GET':
         materia = Materia.query.get(id)
         return materia_schema.dump(materia)
 
-@materia.route('/',methods= ['POST'])
+@materia_bp.route('/',methods= ['POST'])
 def agregar_materia():
     if request.method == 'POST':
         try:
@@ -39,7 +41,7 @@ def agregar_materia():
             
         
     
-@materia.route('/<int:id>',methods=['PUT'])
+@materia_bp.route('/<int:id>',methods=['PUT'])
 def actualizar_materia(id):
     if request.method == 'PUT':
         try:

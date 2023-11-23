@@ -1,4 +1,4 @@
-from .models import Usuario
+from app.models.usuario import Usuario
 from app.extensions import ma
 from marshmallow import fields,validate
 

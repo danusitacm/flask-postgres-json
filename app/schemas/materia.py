@@ -1,4 +1,4 @@
-from .models import Materia
+from app.models.materia import Materia
 from app.extensions import ma
 from marshmallow import fields,validate
 

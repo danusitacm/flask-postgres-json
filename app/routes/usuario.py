@@ -1,23 +1,25 @@
 from flask import request, jsonify
-from app.usuario import usuario
-from app.usuario.models import Usuario
+from app.models.usuario import Usuario
 from app.extensions import db
-from .schemas import usuario_schema , usuarios_schema
+from app.schemas.usuario import usuario_schema , usuarios_schema
 from marshmallow import ValidationError
+from flask import Blueprint
 
-@usuario.route('/',methods=['GET'])
+usuario_bp = Blueprint('usuario',__name__,url_prefix='/usuarios')
+
+@usuario_bp.route('/',methods=['GET'])
 def obtener_usuarios():
     if request.method == 'GET':
         usuario = Usuario.query.all()
         return usuarios_schema.dump(usuario)
     
-@usuario.route('/<int:id>',methods=['GET'])
+@usuario_bp.route('/<int:id>',methods=['GET'])
 def obtener_usuario_id(id):
     if request.method == 'GET':
         usuario = Usuario.query.get(id)
         return usuario_schema.dump(usuario)
 
-@usuario.route('/',methods= ['POST'])
+@usuario_bp.route('/',methods= ['POST'])
 def agregar_usuario():
     if request.method == 'POST':
         try:
@@ -41,7 +43,7 @@ def agregar_usuario():
             
         
     
-@usuario.route('/<int:id>',methods=['PUT'])
+@usuario_bp.route('/<int:id>',methods=['PUT'])
 def actualizar_usuario(id):
     if request.method == 'PUT':
         try:
