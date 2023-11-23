@@ -47,9 +47,8 @@ def actualizar_materia(id):
         try:
             materia = Materia.query.get(id)
             materia_schema.load(request.json)
-            nombre = request.json['nombre']
-            codigo = request.json['codigo']
-            materia = Materia(nombre,codigo)
+            materia.nombre = request.json['nombre']
+            materia.codigo = request.json['codigo']
             db.session.commit()
             return materia_schema.dump(materia), 200
         except ValidationError as err:
