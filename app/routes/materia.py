@@ -45,13 +45,13 @@ def agregar_materia():
 def actualizar_materia(id):
     if request.method == 'PUT':
         try:
-            materia = materia.query.get(id)
+            materia = Materia.query.get(id)
             materia_schema.load(request.json)
             nombre = request.json['nombre']
             codigo = request.json['codigo']
             materia = Materia(nombre,codigo)
-            db.commit()
-            return materia_schema.dump(request.json), 200
+            db.session.commit()
+            return materia_schema.dump(materia), 200
         except ValidationError as err:
             return err.messages,400
        
