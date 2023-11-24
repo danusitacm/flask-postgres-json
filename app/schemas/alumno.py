@@ -1,6 +1,7 @@
 from app.models.alumno import Alumno
 from app.extensions import ma
 from marshmallow import fields,validate
+from app.extensions import db
 
 class AlumnoSchema(ma.SQLAlchemySchema):
     class Meta:
@@ -8,6 +9,7 @@ class AlumnoSchema(ma.SQLAlchemySchema):
         load_instance = True
         fields = ("alumno_pk", "puntaje_alumno", "usuario_pk")
         ordered=True
+        sqla_session = db.session
         
     alumno_pk = fields.Integer()
     #para validar tengo que haces esto

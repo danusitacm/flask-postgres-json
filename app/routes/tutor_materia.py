@@ -27,8 +27,8 @@ def agregar_materia():
             tutor_materia_schema.load(request.json)
             # Obtenemos los datos del json para validar
             materia_pk = request.json['materia_pk']
-            alumno_pk = request.json['alumno_pk']
-            nueva_tm = TutorMateria(materia_pk,alumno_pk)
+            tutor_pk = request.json['tutor_pk']
+            nueva_tm = TutorMateria(materia_pk,tutor_pk)
 
             # agregamos el nuevo materia en la base de datos 
             db.session.add(nueva_tm)
@@ -48,7 +48,7 @@ def actualizar_materia(id):
             t_m_actualizado = TutorMateria.query.get(id)
             tutor_materia_schema.load(request.json)
             t_m_actualizado.materia_pk = request.json['materia_pk']
-            t_m_actualizado.alumno_pk = request.json['alumno_pk']
+            t_m_actualizado.tutor_pk = request.json['tutor_pk']
             db.session.commit()
             return tutor_materia_schema.dump(t_m_actualizado), 200
         except ValidationError as err:
