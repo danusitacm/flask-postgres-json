@@ -1,4 +1,5 @@
 from app.extensions import db 
+from app.models.tutor_materia import tutor_materia
 
 class Materia(db.Model):
     __tablename__='materia'
@@ -8,7 +9,7 @@ class Materia(db.Model):
     
     #Relaciones
     solicitud = db.relationship('Solicitud', back_populates='materia')
-    tutores= db.relationship('TutorMateria', back_populates='materia')
+    tutor= db.relationship('Tutor',secondary=tutor_materia, back_populates='materia')
     
     def __init__(self,nombre,codigo) -> None:
         self.nombre = nombre

@@ -1,5 +1,5 @@
 from app.extensions import db 
-
+from app.models.tutor_materia import tutor_materia
 class Tutor(db.Model):
     __tablename__='tutor'
     tutor_pk=db.Column(db.Integer(), primary_key=True)
@@ -8,7 +8,7 @@ class Tutor(db.Model):
     
     # Relaciones 
     usuario = db.relationship('Usuario', back_populates='tutores', uselist=False)
-    materias= db.relationship('TutorMateria', back_populates='tutor')
+    materia= db.relationship('Materia',secondary=tutor_materia, back_populates='tutor')
 
     
     def __init__(self,puntaje_tutor,usuario_pk) -> None:
