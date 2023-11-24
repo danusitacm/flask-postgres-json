@@ -8,7 +8,8 @@ class Tutor(db.Model):
     
     # Relaciones 
     usuario = db.relationship('Usuario', back_populates='tutores', uselist=False)
-    
+    materias= db.relationship('TutorMateria', back_populates='tutor')
+
     
     def __init__(self,puntaje_tutor,usuario_pk) -> None:
         self.puntaje_tutor = puntaje_tutor

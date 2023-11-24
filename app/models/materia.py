@@ -8,7 +8,7 @@ class Materia(db.Model):
     
     #Relaciones
     solicitud = db.relationship('Solicitud', back_populates='materia')
-    tutor_materia = db.relationship('TutorMateria', back_populates='materia')    
+    tutores= db.relationship('TutorMateria', back_populates='materia')
     
     def __init__(self,nombre,codigo) -> None:
         self.nombre = nombre
