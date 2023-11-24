@@ -53,4 +53,3 @@ def actualizar_alumno(id):
             return alumno_schema.dump(alumno), 200
         except ValidationError as err:
             return err.messages,400
-       

@@ -60,4 +60,16 @@ def actualizar_solicitud(id):
             return solicitud_schema.dump(solicitud), 200
         except ValidationError as err:
             return err.messages,400
+        
+    
+@solicitud_bp.route('/<int:id>',methods=['DELETE'])
+def eliminar_solicitud(id):
+    if request.method == 'DELETE':
+        try:
+            solicitud = Solicitud.query.get(id)
+            db.session.delete(solicitud)
+            db.session.commit()
+            return solicitud_schema.dump(solicitud), 200
+        except ValidationError as err:
+            return err.messages,400
        
