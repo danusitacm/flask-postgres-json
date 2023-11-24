@@ -45,7 +45,7 @@ def agregar_alumno():
 def actualizar_alumno(id):
     if request.method == 'PUT':
         try:
-            alumno = alumno.query.get(id)
+            alumno = Alumno.query.get(id)
             alumno_schema.load(request.json)
             alumno.puntaje_alumno = request.json['puntaje_alumno']
             alumno.usuario_pk = request.json['usuario_pk']

@@ -45,7 +45,7 @@ def agregar_tutor():
 def actualizar_tutor(id):
     if request.method == 'PUT':
         try:
-            tutor = tutor.query.get(id)
+            tutor = Tutor.query.get(id)
             tutor_schema.load(request.json)
             tutor.puntaje_tutor = request.json['puntaje_tutor']
             tutor.usuario_pk = request.json['usuario_pk']
