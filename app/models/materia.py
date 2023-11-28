@@ -10,6 +10,7 @@ class Materia(db.Model):
     #Relaciones
     solicitud = db.relationship('Solicitud', back_populates='materia')
     tutor= db.relationship('Tutor',secondary=tutor_materia, back_populates='materia')
+    tutoria= db.relationship('Tutoria',back_populates='materia')
     
     def __init__(self,nombre,codigo) -> None:
         self.nombre = nombre

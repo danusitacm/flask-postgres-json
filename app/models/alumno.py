@@ -9,7 +9,7 @@ class Alumno(db.Model):
     # Relaciones 
     usuario = db.relationship('Usuario', back_populates='alumno', uselist=False)
     solicitud = db.relationship('Solicitud', back_populates='alumno')
-    
+    tutoria = db.relationship('Tutoria', back_populates='alumno')
     def __init__(self,puntaje_alumno,usuario_pk) -> None:
         self.puntaje_alumno = puntaje_alumno
         self.usuario_pk =usuario_pk
