@@ -10,6 +10,7 @@ from app.routes.solicitud import solicitud_bp
 from app.routes.tutor_materia import tutor_materia_bp
 from app.routes.tutoria import tutoria_bp
 from app.routes.review_tutor import review_tutor_bp
+from app.routes.review_alumno import review_alumno_bp
 from app.extensions import db,migrate,ma
 def create_app():
     # create and configure the app
@@ -35,6 +36,7 @@ def create_app():
     app.register_blueprint(tutor_materia_bp)
     app.register_blueprint(tutoria_bp)
     app.register_blueprint(review_tutor_bp)
+    app.register_blueprint(review_alumno_bp)
     
     app.cli.add_command(create_tables)
     app.cli.add_command(delete_tables)

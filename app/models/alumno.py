@@ -11,6 +11,7 @@ class Alumno(db.Model):
     solicitud = db.relationship('Solicitud', back_populates='alumno')
     tutoria = db.relationship('Tutoria', back_populates='alumno')
     review_tutor = db.relationship('ReviewTutor', back_populates='alumno')
+    review_alumno = db.relationship('ReviewAlumnos', back_populates='alumno')
 
     def __init__(self,puntaje_alumno,usuario_pk) -> None:
         self.puntaje_alumno = puntaje_alumno
