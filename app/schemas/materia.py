@@ -1,7 +1,6 @@
 from app.models.materia import Materia
 from app.extensions import ma
 from marshmallow import fields,validate
-from app.extensions import db
 
 
 class MateriaSchema(ma.SQLAlchemySchema):

@@ -10,6 +10,7 @@ class Tutor(db.Model):
     usuario = db.relationship('Usuario', back_populates='tutores', uselist=False)
     materia = db.relationship('Materia',secondary=tutor_materia, back_populates='tutor')
     tutoria = db.relationship('Tutoria', back_populates='tutor')
+    review_tutor = db.relationship('ReviewTutor', back_populates='tutor')
 
     
     def __init__(self,puntaje_tutor,usuario_pk) -> None:
