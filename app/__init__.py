@@ -11,7 +11,7 @@ from app.routes.tutor_materia import tutor_materia_bp
 from app.routes.tutoria import tutoria_bp
 from app.routes.review_tutor import review_tutor_bp
 from app.routes.review_alumno import review_alumno_bp
-from app.extensions import db,migrate,ma
+from app.extensions import db,migrate,ma, login_manager
 def create_app():
     # create and configure the app
     app = Flask(__name__)
@@ -27,6 +27,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     ma.init_app(app)
+    login_manager.init_app(app)
     
     app.register_blueprint(usuario_bp)
     app.register_blueprint(alumno_bp)
