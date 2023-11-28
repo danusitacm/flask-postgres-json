@@ -1,17 +1,17 @@
 from app.extensions import db 
 
 
-class ReviewTutor(db.Model):
-    __tablename__='review_tutor'
-    review_tutor_pk = db.Column(db.Integer, primary_key=True)
+class ReviewAlumno(db.Model):
+    __tablename__='review_alumno'
+    review_alumno_pk = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(255))
     calificacion_tutor = db.Column(db.Float())
     tutor_pk = db.Column(db.Integer,db.ForeignKey('tutor.tutor_pk'),nullable=False)
     alumno_pk = db.Column(db.Integer,db.ForeignKey('alumno.alumno_pk'),nullable=False)
     
     # Relaciones
-    alumno = db.relationship('Alumno', back_populates='review_tutor')
-    tutor = db.relationship('Tutor', back_populates='review_tutor')
+    alumno = db.relationship('Alumno', back_populates='review_alumno')
+    tutor = db.relationship('Tutor', back_populates='review_alumno')
 
     def __init__(self,descripcion ,calificacion_tutor,alumno_pk,tutor_pk) -> None:
         self.descripcion = descripcion
@@ -22,5 +22,5 @@ class ReviewTutor(db.Model):
         
 
     def __repr__(self):
-        return '<review_tutor_pk {}>'.format(self.review_tutor_pk)
+        return '<review_alumno_pk {}>'.format(self.review_alumno_pk)
     
